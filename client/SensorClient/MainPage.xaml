@@ -1,55 +1,189 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorClient.MainPage"
-             Title="Simulador de Sensor">
+             BackgroundColor="#0D0F14">
 
     <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="20">
-            
-            <Label Text="Monitor de Temperatura" 
-                   FontSize="22" 
-                   HorizontalOptions="Center" 
-                   FontAttributes="Bold" />
+        <VerticalStackLayout Padding="24,40,24,32" Spacing="0">
 
-            <Border Stroke="LightGray"
+            <!-- ══ HEADER ══ -->
+            <VerticalStackLayout Spacing="4" Margin="0,0,0,32">
+                <Label Text="SENSOR CLIENT  v1.0"
+                       FontSize="11"
+                       CharacterSpacing="3"
+                       HorizontalOptions="Start"
+                       TextColor="#4A90D9"
+                       FontAttributes="Bold" />
+                <Label Text="Monitoramento&#10;Térmico"
+                       FontSize="34"
+                       LineHeight="1.1"
+                       HorizontalOptions="Start"
+                       TextColor="#E8ECF0"
+                       FontAttributes="Bold" />
+                <BoxView HeightRequest="2"
+                         WidthRequest="48"
+                         HorizontalOptions="Start"
+                         BackgroundColor="#4A90D9"
+                         Margin="0,8,0,0" />
+            </VerticalStackLayout>
+
+            <!-- ══ TEMP CARD ══ -->
+            <Border StrokeShape="RoundRectangle 20"
+                    Stroke="#1E2530"
                     StrokeThickness="1"
-                    Padding="15"
-                    HorizontalOptions="Center"
-                    StrokeShape="RoundRectangle 10">
-                <VerticalStackLayout HorizontalOptions="Center" Spacing="5">
-                    <Label x:Name="lblTemp" 
-                           Text="-- °C" 
-                           FontSize="50" 
-                           HorizontalOptions="Center" 
-                           TextColor="#2196F3" />
-                    
-                    <Label x:Name="lblStatus" 
-                           Text="Aguardando..." 
-                           FontSize="18" 
-                           HorizontalOptions="Center" 
-                           TextColor="DimGray" />
-                </VerticalStackLayout>
+                    BackgroundColor="#151820"
+                    Padding="28,24"
+                    Margin="0,0,0,16">
+                <Border.Shadow>
+                    <Shadow Brush="#4A90D9" Offset="0,0" Radius="40" Opacity="0.08" />
+                </Border.Shadow>
+
+                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+
+                    <!-- Label topo -->
+                    <Label Grid.Row="0" Grid.Column="0"
+                           Text="TEMPERATURA ATUAL"
+                           FontSize="10"
+                           CharacterSpacing="2.5"
+                           TextColor="#5A6478"
+                           FontAttributes="Bold" />
+
+                    <!-- Indicador ao vivo -->
+                    <HorizontalStackLayout Grid.Row="0" Grid.Column="1"
+                                           Spacing="6" VerticalOptions="Center">
+                        <Ellipse WidthRequest="8" HeightRequest="8"
+                                 Fill="#4A90D9"
+                                 VerticalOptions="Center" />
+                        <Label x:Name="lblLiveTag"
+                               Text="AGUARDANDO"
+                               FontSize="10"
+                               CharacterSpacing="1.5"
+                               TextColor="#5A6478"
+                               FontAttributes="Bold"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <!-- Temperatura em destaque -->
+                    <HorizontalStackLayout Grid.Row="1" Grid.ColumnSpan="2"
+                                           Spacing="4"
+                                           VerticalOptions="Center"
+                                           Margin="0,12,0,16">
+                        <Label x:Name="lblTemp"
+                               Text="--"
+                               FontSize="80"
+                               FontAttributes="Bold"
+                               TextColor="#E8ECF0"
+                               VerticalOptions="End" />
+                        <Label Text="°C"
+                               FontSize="32"
+                               FontAttributes="Bold"
+                               TextColor="#4A90D9"
+                               VerticalOptions="End"
+                               Margin="0,0,0,14" />
+                    </HorizontalStackLayout>
+
+                    <!-- Badge status -->
+                    <Border x:Name="statusBadge"
+                            Grid.Row="2" Grid.ColumnSpan="2"
+                            BackgroundColor="#1E2530"
+                            Padding="14,6"
+                            HorizontalOptions="Start"
+                            StrokeShape="RoundRectangle 8"
+                            Stroke="#2A3445"
+                            StrokeThickness="1">
+                        <Label x:Name="lblStatus"
+                               Text="SISTEMA OFFLINE"
+                               FontSize="12"
+                               CharacterSpacing="1.5"
+                               FontAttributes="Bold"
+                               TextColor="#5A6478" />
+                    </Border>
+
+                </Grid>
             </Border>
 
-            <Button Text="Gerar e Enviar Leitura" 
-                    Clicked="OnEnviarClicked" 
-                    HeightRequest="50"
-                    BackgroundColor="#2196F3"
-                    TextColor="White" />
+            <!-- ══ BOTÃO CAPTURAR ══ -->
+            <Button Text="▶  CAPTURAR LEITURA"
+                    Clicked="OnEnviarClicked"
+                    CornerRadius="14"
+                    HeightRequest="58"
+                    BackgroundColor="#4A90D9"
+                    TextColor="#FFFFFF"
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    CharacterSpacing="1"
+                    Margin="0,0,0,28">
+                <Button.Shadow>
+                    <Shadow Brush="#4A90D9" Offset="0,6" Radius="18" Opacity="0.35" />
+                </Button.Shadow>
+            </Button>
 
-            <BoxView HeightRequest="1" Color="LightGray" />
+            <!-- ══ LOGS ══ -->
+            <HorizontalStackLayout Spacing="10" Margin="0,0,0,12" VerticalOptions="Center">
+                <BoxView WidthRequest="4" HeightRequest="16"
+                         BackgroundColor="#4A90D9"
+                         CornerRadius="2"
+                         VerticalOptions="Center" />
+                <Label Text="LOGS DE ATIVIDADE"
+                       FontSize="11"
+                       CharacterSpacing="2"
+                       FontAttributes="Bold"
+                       TextColor="#8A95A8"
+                       VerticalOptions="Center" />
+            </HorizontalStackLayout>
 
-            <Label Text="Histórico Local:" FontAttributes="Bold" />
-            
-            <CollectionView x:Name="listHistorico" HeightRequest="250">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Label Text="{Binding .}" Padding="2" FontSize="12" TextColor="#444" />
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <Border StrokeShape="RoundRectangle 16"
+                    Stroke="#1E2530"
+                    StrokeThickness="1"
+                    BackgroundColor="#0F1117"
+                    Padding="0">
+                <CollectionView x:Name="listHistorico" HeightRequest="280">
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="8" Padding="20">
+                            <Label Text="◌"
+                                   FontSize="32"
+                                   HorizontalOptions="Center"
+                                   TextColor="#2A3445" />
+                            <Label Text="Nenhuma leitura registrada."
+                                   HorizontalOptions="Center"
+                                   TextColor="#3A4455"
+                                   FontSize="13" />
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="16,12" ColumnDefinitions="Auto, *, Auto">
+                                <BoxView WidthRequest="3"
+                                         BackgroundColor="#4A90D9"
+                                         CornerRadius="2"
+                                         VerticalOptions="Fill" />
+                                <Label Grid.Column="1"
+                                       Text="{Binding .}"
+                                       Margin="14,0,0,0"
+                                       VerticalOptions="Center"
+                                       FontSize="12.5"
+                                       FontFamily="Courier New"
+                                       TextColor="#8A95A8" />
+                                <Label Grid.Column="2"
+                                       Text="✓"
+                                       FontSize="12"
+                                       TextColor="#4A90D9"
+                                       VerticalOptions="Center" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+
+            <!-- ══ RODAPÉ ══ -->
+            <Label Text="SensorClient  •  localhost:5000"
+                   FontSize="11"
+                   HorizontalOptions="Center"
+                   TextColor="#2A3445"
+                   Margin="0,20,0,0" />
 
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>
