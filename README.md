@@ -1,46 +1,27 @@
-# Thermal Monitoring System (SensorClient)
+Após a instalação, verifique se está correto executando:
+```bash
+dotnet --version
+```
 
-Este projeto consiste em um sistema distribuído de monitoramento de temperatura seguindo a arquitetura de três camadas. O sistema simula a leitura de sensores de hardware, processa esses dados em um servidor centralizado e persiste as informações em um banco de dados relacional, garantindo a idempotência das operações.
+O retorno deve ser `9.0.x`.
 
----
+**2. Instale o workload do MAUI**
 
-## Arquitetura do Sistema
+Com o .NET instalado, execute o comando abaixo no terminal para instalar o workload necessário:
+```bash
+dotnet workload install maui
+```
 
-O projeto foi dividido em três camadas distintas para garantir a separação de responsabilidades:
+**3. Verifique a instalação**
 
-**1. Camada de Apresentação (Client)**
+Para confirmar que o MAUI foi instalado corretamente:
+```bash
+dotnet workload list
+```
 
-- Desenvolvida em .NET MAUI (C#).
-- Interface moderna em Dark Mode com feedback visual em tempo real.
-- Responsável pela geração de UUIDs únicos para cada requisição e simulação de dados térmicos.
+O workload `maui` deve aparecer na lista.
 
-**2. Camada de Aplicação (Server)**
-
-- Desenvolvida com FastAPI (Python).
-- Implementa as regras de negócio (classificação de temperatura em Normal, Alerta ou Crítico).
-- Filtro de idempotência: Verifica se o UUID já foi processado antes de persistir, evitando duplicidade.
-
-**3. Camada de Dados (Persistence)**
-
-- Utiliza SQLite com SQLAlchemy (ORM).
-- Armazenamento persistente das leituras, IDs de sensores e timestamps.
-
----
-
-## Tecnologias Utilizadas
-
-**Front-end**
-
-- .NET 9.0 / MAUI
-- HttpClient (Consumo de API REST)
-- ObservableCollection (Atualização dinâmica de UI)
-
-**Back-end**
-
-- Python 3.11+
-- FastAPI & Uvicorn
-- SQLAlchemy (ORM)
-- SQLite
+> **Observacao:** O desenvolvimento com .NET MAUI para Windows requer o Visual Studio 2022 ou superior com o componente "Desenvolvimento para plataformas moveis com .NET" habilitado. Caso prefira usar o Visual Studio, baixe em `https://visualstudio.microsoft.com/`.
 
 ---
 
@@ -62,7 +43,7 @@ O servidor estará rodando em `http://localhost:5000`. Você pode acessar a docu
 
 ### 2. Configurando o Cliente (Front-end)
 
-Certifique-se de ter o workload do MAUI instalado. Na pasta do cliente, execute:
+Na pasta do cliente, execute:
 ```bash
 dotnet run -f net9.0-windows10.0.19041.0
 ```
@@ -87,9 +68,7 @@ Cada leitura enviada pelo cliente contém um UUID v4. O servidor armazena esse I
 
 ---
 
-
-
 ## Autores
 
-Jorge Luis Ferreira Luz
+Jorge Luis Ferreira Luz  
 Alisson Rodrigo Carneiro da Silva
