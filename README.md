@@ -1,3 +1,58 @@
+# Thermal Monitoring System (SensorClient)
+
+Este projeto consiste em um sistema distribuído de monitoramento de temperatura seguindo a arquitetura de três camadas. O sistema simula a leitura de sensores de hardware, processa esses dados em um servidor centralizado e persiste as informações em um banco de dados relacional, garantindo a idempotência das operações.
+
+---
+
+## Arquitetura do Sistema
+
+O projeto foi dividido em três camadas distintas para garantir a separação de responsabilidades:
+
+**1. Camada de Apresentação (Client)**
+
+- Desenvolvida em .NET MAUI (C#).
+- Interface moderna em Dark Mode com feedback visual em tempo real.
+- Responsável pela geração de UUIDs únicos para cada requisição e simulação de dados térmicos.
+
+**2. Camada de Aplicação (Server)**
+
+- Desenvolvida com FastAPI (Python).
+- Implementa as regras de negócio (classificação de temperatura em Normal, Alerta ou Crítico).
+- Filtro de idempotência: Verifica se o UUID já foi processado antes de persistir, evitando duplicidade.
+
+**3. Camada de Dados (Persistence)**
+
+- Utiliza SQLite com SQLAlchemy (ORM).
+- Armazenamento persistente das leituras, IDs de sensores e timestamps.
+
+---
+
+## Tecnologias Utilizadas
+
+**Front-end**
+
+- .NET 9.0 / MAUI
+- HttpClient (Consumo de API REST)
+- ObservableCollection (Atualização dinâmica de UI)
+
+**Back-end**
+
+- Python 3.11+
+- FastAPI & Uvicorn
+- SQLAlchemy (ORM)
+- SQLite
+
+---
+
+## Pré-requisitos
+
+### Instalando o .NET 9.0 e o Workload do MAUI
+
+**1. Baixe e instale o .NET 9.0 SDK**
+
+Acesse o site oficial e baixe o instalador para o seu sistema operacional: https://dotnet.microsoft.com/download/dotnet/9.0
+
+
 Após a instalação, verifique se está correto executando:
 ```bash
 dotnet --version
