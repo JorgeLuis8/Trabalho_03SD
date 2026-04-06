@@ -68,6 +68,8 @@ Cada leitura enviada pelo cliente contém um UUID v4. O servidor armazena esse I
 
 ---
 
+
+
 ## Autores
 
 Jorge Luis Ferreira Luz  

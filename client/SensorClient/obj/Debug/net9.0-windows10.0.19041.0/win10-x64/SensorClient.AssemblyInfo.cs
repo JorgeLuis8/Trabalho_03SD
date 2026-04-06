@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SensorClient")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+b3569bec4df08379c14d75ac0918a8ff34d911bb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+c191b6453d01284380aac34e052a8578756e6142")]
 [assembly: System.Reflection.AssemblyProductAttribute("SensorClient")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SensorClient")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
